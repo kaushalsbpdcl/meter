@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meter Information Form</title>
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+</style>
+</head>
+<body>
+<h1>Meter Information Form</h1>
+<form id="meterForm">
+  <table>
+    <tr>
+      <th>Meter Number</th>
+      <th>CA Number</th>
+      <th>Seal Number</th>
+      <th>Installation Date</th>
+    </tr>
+    <!-- Repeat this row for each meter -->
+    <tr>
+      <td>6589955</td>
+      <td><input type="text" name="caNumber[]" placeholder="Enter CA Number"></td>
+      <td><input type="text" name="sealNumber[]" placeholder="Enter Seal Number"></td>
+      <td><input type="date" name="installationDate[]"></td>
+    </tr>
+    <!-- Add more rows as needed -->
+  </table>
+  <button type="submit">Submit</button>
+</form>
+<script>
+  const form = document.getElementById("meterForm");
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    
+    const formData = new FormData(form);
+    const entries = formData.entries();
+    const data = [];
+
+    for (const entry of entries) {
+      const [key, value] = entry;
+      data.push({ [key]: value });
+    }
+
+    // You can replace this with your actual API call to save data to the cloud
+    console.log(data);
+  });
+</script>
+</body>
+</html>
